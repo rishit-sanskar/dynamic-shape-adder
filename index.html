@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Shape Adder</title>
+    <link rel="stylesheet" href="src/style.css">
+  </head>
+  <body>
+    <div id="app-container">
+      <h2>Dynamic Shape Adder</h2>
+      
+      <!-- Controls -->
+      <div class="controls">
+        <input type="text" id="shapeIdInput" placeholder="Enter Shape ID">
+        <button id="addShapeBtn">Add Shape</button>
+        <button id="connectBtn">Connect last 2</button>
+        <button id="removeShapeBtn">Remove Shape</button>
+      </div>
+    
+      <!-- Status & Data -->
+      <div class="status-panel">
+        <div id="statusBar">Shapes: 0 | Connections: 0</div>
+        <div id="liveList">
+          <h4>Current Shape IDs:</h4>
+          <ul id="shapeIdList"></ul>
+        </div>
+      </div>
+
+      <!-- NEW: The Drawing Canvas -->
+      <canvas id="drawingCanvas" width="500" height="300"></canvas>
+      
+    </div>
+    
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
