@@ -128,3 +128,30 @@ shapeDescriptors.forEach(descriptor => {
 // --- Acceptance Test ---
 console.log('\n--- Assignment 3 Results ---');
 console.log('Successfully created and rendered shapes:', shapeDescriptors.map(s => s.id).join(', '));
+
+// --- ASSIGNMENT 4: REMOVE AND RE-ADD ---
+
+// 1. Retrieve the shape by its ID from the registry
+const targetShape = elementRegistry.get('shape1');
+
+if (targetShape) {
+  console.log('\n--- Assignment 4 Results ---');
+  console.log('Removing shape1...');
+  
+  // 2. Remove the shape from the canvas
+  canvas.removeShape(targetShape);
+
+  // 3. Wait 2 seconds using setTimeout, then re-add it
+  setTimeout(() => {
+    console.log('2 seconds passed. Re-adding shape1...');
+    
+    // ⚠️ Important: When re-adding a shape, you must specify its parent again.
+    // In our case, the parent is the 'root' element we created in Assignment 1.
+    canvas.addShape(targetShape, root);
+    
+    console.log('Assignment 4 Complete: Shape reappeared!');
+  }, 2000);
+  
+} else {
+  console.log('Shape not found! Make sure "shape1" was created in Assignment 1.');
+}
