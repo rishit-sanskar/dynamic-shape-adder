@@ -92,10 +92,39 @@ const testX = 150;
 const testY = 120;
 const shapeAtPoint = findShapeAt(testX, testY);
 
-console.log('\n--- Assignment 2 Results ---');
-if (shapeAtPoint) {
-  console.log(`Success! Found shape at (${testX}, ${testY}):`, shapeAtPoint.id);
-  console.log('Shape details:', shapeAtPoint);
-} else {
-  console.log(`No shape found at (${testX}, ${testY}). Returned: undefined`);
+// console.log('\n--- Assignment 2 Results ---');
+// if (shapeAtPoint) {
+//   console.log(`Success! Found shape at (${testX}, ${testY}):`, shapeAtPoint.id);
+//   console.log('Shape details:', shapeAtPoint);
+// } else {
+//   console.log(`No shape found at (${testX}, ${testY}). Returned: undefined`);
+// }
+
+// --- ASSIGNMENT 3: FACTORY THEN CANVAS ---
+
+// Array to store our created descriptors
+const shapeDescriptors = [];
+
+// Step 1: Factory Step (Create descriptors)
+// We create the shapes and store them in memory, but they do NOT appear on the canvas yet.
+for (let i = 0; i < 3; i++) {
+  const desc = elementFactory.createShape({
+    id: `node-${i}`,
+    x: 100 + (i * 100), // Spacing them out horizontally (100, 200, 300)
+    y: 450,             // Placing them below our shapes from Assignment 1
+    width: 60,
+    height: 40
+  });
+  
+  shapeDescriptors.push(desc);
 }
+
+// Step 2: Canvas Step (Render descriptors)
+// Now we iterate through our stored descriptors and actually draw them.
+shapeDescriptors.forEach(descriptor => {
+  canvas.addShape(descriptor, root);
+});
+
+// --- Acceptance Test ---
+console.log('\n--- Assignment 3 Results ---');
+console.log('Successfully created and rendered shapes:', shapeDescriptors.map(s => s.id).join(', '));
