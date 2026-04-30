@@ -65,7 +65,37 @@ const shapes = elementRegistry.filter(el => !el.waypoints && el.id !== 'root');
 const totalElements = shapes.length + connections.length;
 
 // Log the results dynamically (Acceptance Criteria met)
-console.log('--- Assignment 1 Results ---');
-console.log(`Shape Count: ${shapes.length}`);
-console.log(`Connection Count: ${connections.length}`);
-console.log(`Total Element Count: ${totalElements}`);
+// console.log('--- Assignment 1 Results ---');
+// console.log(`Shape Count: ${shapes.length}`);
+// console.log(`Connection Count: ${connections.length}`);
+// console.log(`Total Element Count: ${totalElements}`);
+
+// --- ASSIGNMENT 2: FIND BY POSITION ---
+
+function findShapeAt(x, y) {
+  // 1. Get all shapes (ignoring connections and the root element)
+  const allShapes = elementRegistry.filter(el => !el.waypoints && el.id !== 'root');
+
+  // 2. Find the first shape whose bounding box contains the (x, y) coordinates
+  const foundShape = allShapes.find(el => {
+    return x >= el.x && 
+           x <= (el.x + el.width) && 
+           y >= el.y && 
+           y <= (el.y + el.height);
+  });
+
+  return foundShape;
+}
+
+// --- Acceptance Test ---
+const testX = 150;
+const testY = 120;
+const shapeAtPoint = findShapeAt(testX, testY);
+
+console.log('\n--- Assignment 2 Results ---');
+if (shapeAtPoint) {
+  console.log(`Success! Found shape at (${testX}, ${testY}):`, shapeAtPoint.id);
+  console.log('Shape details:', shapeAtPoint);
+} else {
+  console.log(`No shape found at (${testX}, ${testY}). Returned: undefined`);
+}
